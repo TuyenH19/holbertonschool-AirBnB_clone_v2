@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """New engine DBStorage"""
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-import os
-from models.base_model import BaseModel, Base
+import json
+from models.base_model import Base
 from models.user import User
-from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+from models.place import Place
 from models.review import Review
+from os import getenv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session
 
 classes = {
                'User': User, 'Place': Place,
@@ -25,11 +27,11 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object."""
-        user = os.getenv('HBNB_MYSQL_USER')
-        pwd = os.getenv('HBNB_MYSQL_PWD')
-        host = os.getenv('HBNB_MYSQL_HOST', 'localhost')
-        db = os.getenv('HBNB_MYSQL_DB')
-        environment = os.getenv('HBNB_ENV')
+        user = getenv('HBNB_MYSQL_USER')
+        pwd = getenv('HBNB_MYSQL_PWD')
+        host = getenv('HBNB_MYSQL_HOST')
+        db = getenv('HBNB_MYSQL_DB')
+        environment = getenv('HBNB_ENV')
         # Create the engine
         self.__engine = create_engine(f'mysql+mysqldb://{user}:{pwd}@{host}/'
                                       '{db}', pool_pre_ping=True)
@@ -45,6 +47,7 @@ class DBStorage:
                 key = f'{cls.__name__}.{obj.id}'
                 obj_dict[key] = obj
         else:
+            classes = [User, State, City, Amenity, Place, Review]
             for cls in classes:
                 for obj in self.__session.query(cls).all():
                     key = f'{cls.__name__}.{obj.id}'
