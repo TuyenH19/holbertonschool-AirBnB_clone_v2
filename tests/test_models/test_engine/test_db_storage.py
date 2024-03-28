@@ -7,6 +7,7 @@ from models.user import User
 from models.state import State
 
 
+@unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db', 'Not db storage')
 class TestDBStorage(unittest.TestCase):
     def setUp(self):
         self.db = db_storage.DBStorage()
@@ -15,6 +16,7 @@ class TestDBStorage(unittest.TestCase):
     def tearDown(self):
         self.db.close()
 
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db', 'Not db storage')
     def test_all(self):
         all_objects = self.db.all()
         self.assertIsInstance(all_objects, dict)
@@ -25,6 +27,7 @@ class TestDBStorage(unittest.TestCase):
         states = self.db.all(State)
         self.assertIsInstance(states, dict)
 
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db', 'Not db storage')
     def test_new_save_delete(self):
         new_user = User()
         new_user.name = "John Doe"
