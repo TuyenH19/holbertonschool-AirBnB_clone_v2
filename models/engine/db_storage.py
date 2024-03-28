@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, session
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session, sessionmaker
 import os
 from models.base_model import BaseModel, Base
 from models.user import User
