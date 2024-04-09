@@ -10,7 +10,9 @@ app = Flask(__name__, template_folder="templates")
 @app.route("/states_list")
 def list_state():
     states = storage.all(State).values()
-    return render_template('7-states_list.html', states=sorted(states, key=lambda s: s.name, reverse=False))
+    return render_template('7-states_list.html',
+                           states=sorted(states, key=lambda s: s.name,
+                                         reverse=False))
 
 
 if __name__ == '__main__':
