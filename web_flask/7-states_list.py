@@ -6,6 +6,8 @@ from models import State
 
 app = Flask(__name__, template_folder="templates")
 
+app.url_map.strict_slashes = False
+
 
 @app.route("/states_list")
 def list_state():
