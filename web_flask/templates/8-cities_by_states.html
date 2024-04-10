@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+            <LI>
+                {% for state in states %}
+                <li>{{ state.id }}: <b>{{ state.name }}</b></li>
+                    {% set cities_state = cities | selectattr('state_id', 'equalto', state.id) %}
+                    {% for city in cities_state %}
+                    <li>{{ city.id }}: <b>{{ city.name }}</b></li>
+                    {% endfor %}
+                {% endfor %}
+            </LI>
+        </UL>
+    </BODY>
+</HTML>
