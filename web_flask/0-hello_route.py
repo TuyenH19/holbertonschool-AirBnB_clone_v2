@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""Flask web application
+
+Returns:
+    display HEllo HBNB
+"""
 
 from flask import Flask
 
