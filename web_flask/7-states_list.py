@@ -7,6 +7,7 @@ from models import State
 
 app = Flask(__name__, template_folder="templates")
 
+# Ensures strict_slashes are set to False for all routes globally.
 app.url_map.strict_slashes = False
 
 
@@ -18,8 +19,9 @@ def list_state():
                            states=sorted(states, key=lambda s: s.name,
                                          reverse=False))
 
+
 @app.teardown_appcontext
-def teardown(exc):
+def teardown(exception):
     """Remove the current SQLAlchemy session."""
     storage.close()
 
