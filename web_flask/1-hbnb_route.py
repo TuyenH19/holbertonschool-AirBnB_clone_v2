@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""Flask web application
+
+Returns:
+    display HBNB
+"""
 
 from flask import Flask
 
@@ -10,12 +15,14 @@ app.url_map.strict_slashes = False
 
 @app.route("/")
 def hello_hbnb():
+    """ Display Hello HBNB """
     return "<p>Hello HBNB!</p>"
 
 
 @app.route("/hbnb")
 def hbnb():
-    return "<p>HBNB</p>"
+    """ Display HBNB """
+    return "HBNB"
 
 
 if __name__ == '__main__':
