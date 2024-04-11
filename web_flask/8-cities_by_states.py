@@ -5,7 +5,7 @@ from flask import Flask, render_template
 from models import storage
 from models import State, City
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
 
 # Ensures strict_slashes are set to False for all routes globally.
 app.url_map.strict_slashes = False
@@ -15,10 +15,8 @@ app.url_map.strict_slashes = False
 def list_city_by_state():
     """ Display city list by states """
     states = storage.all(State).values()
-    cities = storage.all(City).values()
     return render_template('8-cities_by_states.html',
-                           states=states,
-                           cities=cities)
+                           states=states)
 
 
 @app.teardown_appcontext
