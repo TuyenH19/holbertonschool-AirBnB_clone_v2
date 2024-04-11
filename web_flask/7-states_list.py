@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 """Start a Flask web application"""
 
 from flask import Flask, render_template
@@ -15,9 +15,9 @@ app.url_map.strict_slashes = False
 def list_state():
     """ Display state list with sorting"""
     states = storage.all(State).values()
+    sorted_states = sorted(states, key=lambda s: s.name, reverse=False)
     return render_template('7-states_list.html',
-                           states=sorted(states, key=lambda s: s.name,
-                                         reverse=False))
+                           states=sorted_states)
 
 
 @app.teardown_appcontext
