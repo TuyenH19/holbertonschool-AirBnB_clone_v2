@@ -7,10 +7,10 @@
         <H1>States</H1>
         <UL>
             <LI>
-                {% for state in states %}
+                {% for state in states|sort(attribute="name") %}
                 <li>{{ state.id }}: <b>{{ state.name }}</b></li>
                     {% set cities_state = cities | selectattr('state_id', 'equalto', state.id) %}
-                    {% for city in cities_state %}
+                    {% for city in cities_state|sort(attribute="name") %}
                     <li>{{ city.id }}: <b>{{ city.name }}</b></li>
                     {% endfor %}
                 {% endfor %}
