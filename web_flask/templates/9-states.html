@@ -16,11 +16,11 @@
         <H1>States</H1>
         <UL>
             {% for s in states|sort(attribute="name") %}
-            <li>{{ s.id }}: <b><a href="/states/{{ s.id }}">{{ s.name }}</a></b></li>
+            <li>{{ s.id }}: <b>{{ s.name }}</b></li>
             {% endfor %}
         </UL>
     {% else %}
         <H1>Not found!</H1>
-    {% endif %}  
+    {% endif %}
     </BODY>
 </HTML>
