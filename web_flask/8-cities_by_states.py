@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 """Start a Flask web application"""
 
 from flask import Flask, render_template
@@ -7,6 +7,7 @@ from models import State, City
 
 app = Flask(__name__, template_folder="templates")
 
+# Ensures strict_slashes are set to False for all routes globally.
 app.url_map.strict_slashes = False
 
 
